@@ -1,4 +1,4 @@
-               import { NavigationProp, ParamListBase } from "@react-navigation/native";
+ import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import React, { useMemo, useState } from "react";
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { Product, useProducts } from "../context/ProductsContext";
