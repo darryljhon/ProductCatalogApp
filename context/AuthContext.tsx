@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event: string, session: Session | null) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .select('full_name, username, phone, role')
         .eq('id', user.id)
         .maybeSingle()
-        .then(({ data, error }) => {
+        .then(({ data, error }: { data: Profile | null, error: any }) => {
           if (error) {
             console.error('Error fetching profile:', error);
           } else {

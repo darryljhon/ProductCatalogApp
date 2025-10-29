@@ -12,18 +12,20 @@ type ProductCardProps = {
 
 export default function ProductCard({ product, onPress }: ProductCardProps) {
   const { isFavorite, toggleFavorite } = useProducts();
-  const isFav = isFavorite(String(product.id));
+  const isFav = product.id ? isFavorite(product.id) : false;
 
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const handleFavPress = () => {
-    toggleFavorite(String(product.id));
-    scaleAnim.setValue(0.8);
-    Animated.spring(scaleAnim, {
-      toValue: 1,
-      friction: 3,
-      useNativeDriver: true,
-    }).start();
+    if (product.id) {
+      toggleFavorite(product.id);
+      scaleAnim.setValue(0.8);
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        friction: 3,
+        useNativeDriver: true,
+      }).start();
+    }
   };
 
   return (

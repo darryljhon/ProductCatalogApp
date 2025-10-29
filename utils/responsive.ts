@@ -2,9 +2,9 @@ import { Dimensions, Platform, PixelRatio, StatusBar } from 'react-native';
 
 const { width: screenWidth, height: rawScreenHeight } = Dimensions.get('window');
 
-// Guideline sizes are based on a typical mobile device (approx. 375 x 812)
-const guidelineBaseWidth = 375;
-const guidelineBaseHeight = 812;
+// Guideline sizes are based on a typical mobile device 
+const guidelineBaseWidth = 350;
+const guidelineBaseHeight = 500;
 
 // On Android the status bar (and sometimes navigation bar) reduces usable height.
 // Subtract StatusBar.currentHeight when available so vertical scaling feels correct.
@@ -41,7 +41,7 @@ const moderateScale = (size: number, factor = 0.5) => size + (scale(size) - size
 const responsiveFontSize = (size: number) => {
   const scaleValue = Math.min(screenWidth / guidelineBaseWidth, screenHeight / guidelineBaseHeight);
   const newSize = size * scaleValue;
-  if (Platform.OS === 'ios') {
+  if (Platform.OS === 'android') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
   } else {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
